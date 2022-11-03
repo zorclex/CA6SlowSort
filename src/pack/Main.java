@@ -3,49 +3,97 @@ package pack;
 public class Main {
 
 	public static void main(String[] args) {
+		//If you want to run this Main and see the lists as they're sorted and displayed, you'll need to disable to character limit on the console because these lists are massive.
+
+		//create and initialize masterList
+		int[] masterList = new int[10000];
+		for (int i = 0; i < masterList.length; i++)
+		{
+			masterList[i] = i+1;
+//			System.out.print(masterList[i] + " ");
+		}
+		shuffle(masterList);
+		printArray(masterList);
+		System.out.println("=-=-=-=-=- list initialized and displayed =-=-=-=-=-");
+
+		int[] nums1 = copyToNewArray(masterList); //for Selection Sort
+		int[] nums2 = copyToNewArray(masterList); //for Insertion Sort
+		int[] nums3 = copyToNewArray(masterList); //for Shell Sort
+		int[] nums4 = copyToNewArray(masterList); //for Bubble Sort
+		int[] nums5 = copyToNewArray(masterList); //for Quicksort Sort
+		long startTime;
+		long endTime;
+
+		// {4,9,3,6,1,0,7,8,2,5}; small array for testing
 		
 		//selection sort
-		int[] nums1 = {4,9,3,6,1,0,7,8,2,5};
+		startTime = System.currentTimeMillis();
 		SelectionSort.selectionSort(nums1);
-		System.out.println("Running Selection Sort on array nums1 (4,9,3,6,1,0,7,8,2,5): ");
-		for(int i = 0; i < nums1.length; i++)
-		{
-			System.out.print(nums1[i] + ", ");
-		}
-		System.out.println("\n=-=-=-=-=-=-=-=-=-=\n");
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Selection Sort on list nums1 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums1);
 		
 		//insertion sort
-		int[] nums2 = {4,9,3,6,1,0,7,8,2,5};
+		startTime = System.currentTimeMillis();
 		InsertionSort.insertionSort(nums2);
-		System.out.println("Running Insertion Sort on array nums2 (4,9,3,6,1,0,7,8,2,5): ");
-		for(int i = 0; i < nums2.length; i++)
-		{
-			System.out.print(nums2[i] + ", ");
-		}
-		System.out.println("\n=-=-=-=-=-=-=-=-=-=\n");
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Insertion Sort on list nums2 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums2);
 		
 		//shell sort
-		int[] nums3 = {4,9,3,6,1,0,7,8,2,5};
-		int[] gapVals = {2, 1};
+		int[] gapVals = {2, 1}; //probably could be optimized?
+		startTime = System.currentTimeMillis();
 		ShellSort.shellSort(nums3, gapVals);
-		System.out.println("Running Shell Sort on array nums3 (4,9,3,6,1,0,7,8,2,5): ");
-		for(int i = 0; i < nums3.length; i++)
-		{
-			System.out.print(nums3[i] + ", ");
-		}
-		System.out.println("\n=-=-=-=-=-=-=-=-=-=\n");
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Shell Sort on list nums3 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums3);
 		
-		//insertion sort
-		int[] nums4 = {4,9,3,6,1,0,7,8,2,5};
+		//bubble sort
+		startTime = System.currentTimeMillis();
 		BubbleSort.bubbleSort(nums4);
-		System.out.println("Running Bubble Sort on array nums4 (4,9,3,6,1,0,7,8,2,5): ");
-		for(int i = 0; i < nums4.length; i++)
-		{
-			System.out.print(nums4[i] + ", ");
-		}
-		System.out.println("\n=-=-=-=-=-=-=-=-=-=\n");
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Bubble Sort on list nums4 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums4);
+		
+		//QuickSort sort
+		startTime = System.currentTimeMillis();
+		Quicksort.quicksort(nums5, 0, nums5.length - 1);
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Quick Sort on list nums5 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums5);
 		
 		//cabbage
+	}
+	
+	public static void shuffle(int [] arr) 
+	{
+		for (int i = 0; i < arr.length; i++) 
+        {
+			int index = (int) (Math.random() * arr.length);
+			int temp = arr[i];
+			arr[i] = arr[index];
+            arr[index] = temp;
+        }
+		System.out.println("shuffling list");
+    }
+	
+	public static void printArray(int[] arr)
+	{
+		for(int i = 0; i < arr.length; i++)
+		{
+			System.out.print(arr[i] + ", ");
+		}
+		System.out.println("\n=-=-=-=-=-=-=-=-=-=\n");
+	}
+	
+	public static int[] copyToNewArray(int[] arr1)
+	{
+		int[] arr2 = new int[arr1.length];
+		for(int i = 0; i < arr1.length; i++)
+		{
+			arr2[i] = arr1[i];
+		}
+		return arr2;
 	}
 
 }
