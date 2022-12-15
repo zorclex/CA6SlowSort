@@ -21,6 +21,9 @@ public class Main {
 		int[] nums3 = copyToNewArray(masterList); //for Shell Sort
 		int[] nums4 = copyToNewArray(masterList); //for Bubble Sort
 		int[] nums5 = copyToNewArray(masterList); //for Quicksort Sort
+		int[] nums6 = copyToNewArray(masterList); //for Mergesort Sort
+		int[] nums7 = copyToNewArray(masterList); //for Mergesort2 Sort
+		
 		long startTime;
 		long endTime;
 
@@ -61,6 +64,20 @@ public class Main {
 		endTime = System.currentTimeMillis();
 		System.out.println("Ran Quick Sort on list nums5 with a duration of " + (endTime - startTime) + " milliseconds.");
 //		printArray(nums5);
+		
+		//MergeSort sort
+		startTime = System.currentTimeMillis();
+		Mergesort.mergeSort(nums6, 0, (nums6.length - 1));
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Merge Sort on list nums6 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums5);	
+		
+		//MergeSort sort
+		startTime = System.currentTimeMillis();
+		Mergesort2.mergeSort2(nums7, 0, (nums7.length - 1));
+		endTime = System.currentTimeMillis();
+		System.out.println("Ran Merge Sort 2 on list nums7 with a duration of " + (endTime - startTime) + " milliseconds.");
+//		printArray(nums5);	
 		
 		//cabbage
 	}
